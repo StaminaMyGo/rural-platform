@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>意见详情 - 乡村意见簿</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>乡村意见簿</h1>
+            <nav>
+                <a href="index.html">首页</a>
+                <a href="#" id="publish-btn">发布意见</a>
+                <a href="login.html" id="login-btn">登录</a>
+                <span id="user-info" style="display: none;"></span>
+                <a href="#" id="logout-btn" style="display: none;">退出</a>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="opinion-detail">
+            <h2>关于改善村道照明的建议</h2>
+            <div class="opinion-meta">
+                <span class="user">村民张三</span>
+                <span class="date">2026-03-18</span>
+                <span class="category">交通</span>
+            </div>
+            <div class="opinion-content">
+                <p>村道照明不足，晚上出行不安全，建议增加路灯数量，改善照明条件。特别是村东头的小路，晚上几乎看不见路，老人和孩子出行很危险。希望村委会能够重视这个问题，尽快解决。</p>
+            </div>
+            <div class="opinion-actions">
+                <button class="like-btn">
+                    <span class="like-icon">👍</span>
+                    <span class="like-count">12</span>
+                </button>
+            </div>
+            
+            <!-- 干部回复 -->
+            <div class="official-reply">
+                <h3>村干部回复</h3>
+                <div class="reply-item">
+                    <div class="reply-header">
+                        <span class="user">村主任 李四</span>
+                        <span class="date">2026-03-19</span>
+                    </div>
+                    <div class="reply-content">
+                        <p>您好，感谢您的建议。我们已经注意到这个问题，正在积极争取资金，计划在本月底前完成村道照明的改造工作，增加路灯数量，确保村民夜间出行安全。</p>
+                    </div>
+                </div>
+                
+                <!-- 干部回复表单 -->
+                <div class="reply-form" style="display: none;">
+                    <h4>发表回复</h4>
+                    <form id="reply-form">
+                        <div class="form-group">
+                            <textarea id="reply-content" rows="3" required></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" id="cancel-reply">取消</button>
+                            <button type="submit" id="submit-reply">提交回复</button>
+                        </div>
+                    </form>
+                </div>
+                <button class="reply-btn" style="display: none;">发表回复</button>
+            </div>
+        </section>
+        
+        <!-- 评论区 -->
+        <section class="comments-section">
+            <h3>评论 (3)</h3>
+            
+            <!-- 评论表单 -->
+            <div class="comment-form" style="display: none;">
+                <form id="comment-form">
+                    <div class="form-group">
+                        <textarea id="comment-content" rows="3" required></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" id="cancel-comment">取消</button>
+                        <button type="submit" id="submit-comment">发表评论</button>
+                    </div>
+                </form>
+            </div>
+            <button class="comment-btn" style="display: none;">发表评论</button>
+            
+            <!-- 评论列表 -->
+            <div class="comments-list">
+                <div class="comment-item">
+                    <div class="comment-header">
+                        <span class="user">村民王五</span>
+                        <span class="date">2026-03-18</span>
+                    </div>
+                    <div class="comment-content">
+                        <p>我也觉得这个问题很严重，支持你的建议！</p>
+                    </div>
+                </div>
+                <div class="comment-item">
+                    <div class="comment-header">
+                        <span class="user">村民赵六</span>
+                        <span class="date">2026-03-18</span>
+                    </div>
+                    <div class="comment-content">
+                        <p>希望能尽快解决，晚上出门真的很不方便。</p>
+                    </div>
+                </div>
+                <div class="comment-item">
+                    <div class="comment-header">
+                        <span class="user">村民孙七</span>
+                        <span class="date">2026-03-19</span>
+                    </div>
+                    <div class="comment-content">
+                        <p>支持，安全最重要！</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 乡村意见簿 | 共建美好农村</p>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册 - 乡村意见簿</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>乡村意见簿</h1>
+            <nav>
+                <a href="index.html">首页</a>
+                <a href="publish.html" id="publish-btn">发布意见</a>
+                <a href="login.html" id="login-btn">登录</a>
+                <span id="user-info" style="display: none;"></span>
+                <a href="#" id="logout-btn" style="display: none;">退出</a>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="login-form">
+            <h2>用户注册</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="username">用户名</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" id="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">确认密码</label>
+                    <input type="password" id="confirm-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">真实姓名</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">手机号码</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">家庭住址</label>
+                    <input type="text" id="address" required>
+                </div>
+                <div class="form-actions">
+                    <a href="login.html" class="cancel-btn">取消</a>
+                    <button type="submit" id="submit-register">注册</button>
+                </div>
+                <p class="error-message" id="register-error" style="display: none;"></p>
+                <p class="success-message" id="register-success" style="display: none;"></p>
+            </form>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 乡村意见簿 | 共建美好农村</p>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>

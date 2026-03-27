@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>干部回复 - 乡村意见簿</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>乡村意见簿</h1>
+            <nav>
+                <a href="index.html">首页</a>
+                <a href="publish.html" id="publish-btn">发布意见</a>
+                <a href="login.html" id="login-btn">登录</a>
+                <span id="user-info" style="display: none;"></span>
+                <a href="#" id="logout-btn" style="display: none;">退出</a>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="reply-form-page">
+            <h2>干部回复</h2>
+            <div class="opinion-preview">
+                <h3>关于改善村道照明的建议</h3>
+                <div class="opinion-meta">
+                    <span class="user">村民张三</span>
+                    <span class="date">2026-03-18</span>
+                    <span class="category">交通</span>
+                </div>
+                <div class="opinion-content">
+                    <p>村道照明不足，晚上出行不安全，建议增加路灯数量，改善照明条件。特别是村东头的小路，晚上几乎看不见路，老人和孩子出行很危险。希望村委会能够重视这个问题，尽快解决。</p>
+                </div>
+            </div>
+            
+            <form id="reply-form">
+                <div class="form-group">
+                    <label for="reply-content">回复内容</label>
+                    <textarea id="reply-content" rows="8" required></textarea>
+                </div>
+                <div class="form-actions">
+                    <a href="detail.html?id=1" class="cancel-btn">取消</a>
+                    <button type="submit" id="submit-reply">提交回复</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 乡村意见簿 | 共建美好农村</p>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>

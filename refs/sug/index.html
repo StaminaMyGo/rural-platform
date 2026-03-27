@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>乡村意见簿</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>乡村意见簿</h1>
+            <nav>
+                <a href="index.html">首页</a>
+                <a href="#" id="publish-btn">发布意见</a>
+                <a href="login.html" id="login-btn">登录</a>
+                <span>欢迎您:刘洋【村民】<a>退出</a></span>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="filter">
+            <input type="text" id="search-input" placeholder="搜索意见...">
+            <button id="search-btn">搜索</button>
+            <select id="category-select">
+                <option value="all">全部类别</option>
+                <option value="environment">环境</option>
+                <option value="education">教育</option>
+                <option value="health">医疗</option>
+                <option value="transportation">交通</option>
+                <option value="other">其他</option>
+            </select>
+        </section>
+        
+        <section class="opinions-list">
+            <div class="opinion-item">
+                <div class="opinion-header">
+                    <h3><a href="detail.html?id=1">关于改善村道照明的建议</a></h3>
+                    <span class="user">村民张三</span>
+                    <span class="date">2026-03-18</span>
+                </div>
+                <div class="opinion-content">
+                    村道照明不足，晚上出行不安全，建议增加路灯数量，改善照明条件。
+                </div>
+                <div class="opinion-footer">
+                    <span class="category">交通</span>
+                    <button class="like-btn">
+                        <span class="like-icon">👍</span>
+                        <span class="like-count">12</span>
+                    </button>
+                    <a href="detail.html?id=1" class="comment-link">
+                        <span class="comment-icon">💬</span>
+                        <span class="comment-count">3</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="opinion-item">
+                <div class="opinion-header">
+                    <h3><a href="detail.html?id=2">希望加强农村垃圾处理</a></h3>
+                    <span class="user">村民李四</span>
+                    <span class="date">2026-03-17</span>
+                </div>
+                <div class="opinion-content">
+                    村里垃圾堆积严重，建议增加垃圾收集点，定期清理，改善居住环境。
+                </div>
+                <div class="opinion-footer">
+                    <span class="category">环境</span>
+                    <button class="like-btn">
+                        <span class="like-icon">👍</span>
+                        <span class="like-count">8</span>
+                    </button>
+                    <a href="detail.html?id=2" class="comment-link">
+                        <span class="comment-icon">💬</span>
+                        <span class="comment-count">2</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="opinion-item">
+                <div class="opinion-header">
+                    <h3><a href="detail.html?id=3">建议增加乡村医疗服务</a></h3>
+                    <span class="user">村民王五</span>
+                    <span class="date">2026-03-16</span>
+                </div>
+                <div class="opinion-content">
+                    村里医疗设施简陋，希望能增加医疗设备和专业医生，方便村民看病。
+                </div>
+                <div class="opinion-footer">
+                    <span class="category">医疗</span>
+                    <button class="like-btn">
+                        <span class="like-icon">👍</span>
+                        <span class="like-count">15</span>
+                    </button>
+                    <a href="detail.html?id=3" class="comment-link">
+                        <span class="comment-icon">💬</span>
+                        <span class="comment-count">5</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="pagination">
+            <button class="page-btn" disabled>上一页</button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">下一页</button>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 乡村意见簿 | 共建美好农村</p>
+        </div>
+    </footer>
+    
+    <!-- 发布意见模态框 -->
+    <div class="modal" id="publish-modal" style="display: none;">
+        <div class="modal-content">
+            <h2>发布意见</h2>
+            <form id="publish-form">
+                <div class="form-group">
+                    <label for="opinion-title">标题</label>
+                    <input type="text" id="opinion-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="opinion-category">类别</label>
+                    <select id="opinion-category" required>
+                        <option value="environment">环境</option>
+                        <option value="education">教育</option>
+                        <option value="health">医疗</option>
+                        <option value="transportation">交通</option>
+                        <option value="other">其他</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="opinion-content">内容</label>
+                    <textarea id="opinion-content" rows="5" required></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="cancel-publish">取消</button>
+                    <button type="submit" id="submit-publish">发布</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

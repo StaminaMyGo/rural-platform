@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>审核管理 - 乡村意见簿</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>乡村意见簿</h1>
+            <nav>
+                <a href="index.html">首页</a>
+                <a href="publish.html" id="publish-btn">发布意见</a>
+                <a href="login.html" id="login-btn">登录</a>
+                <span id="user-info" style="display: none;"></span>
+                <a href="#" id="logout-btn" style="display: none;">退出</a>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="admin-panel">
+            <h2>注册审核管理</h2>
+            <div class="admin-nav">
+                <a href="admin.html" class="active">注册审核</a>
+                <a href="admin-opinions.html">意见管理</a>
+            </div>
+            
+            <div class="registration-list">
+                <div class="registration-item">
+                    <div class="registration-header">
+                        <h3>张三</h3>
+                        <span class="status pending">待审核</span>
+                    </div>
+                    <div class="registration-details">
+                        <p><strong>用户名：</strong>zhangsan</p>
+                        <p><strong>手机号码：</strong>13800138000</p>
+                        <p><strong>家庭住址：</strong>东村1组1号</p>
+                        <p><strong>注册时间：</strong>2026-03-18 10:00</p>
+                    </div>
+                    <div class="registration-actions">
+                        <button class="approve-btn">通过</button>
+                        <button class="reject-btn">拒绝</button>
+                    </div>
+                </div>
+                
+                <div class="registration-item">
+                    <div class="registration-header">
+                        <h3>李四</h3>
+                        <span class="status pending">待审核</span>
+                    </div>
+                    <div class="registration-details">
+                        <p><strong>用户名：</strong>lisi</p>
+                        <p><strong>手机号码：</strong>13900139000</p>
+                        <p><strong>家庭住址：</strong>西村2组3号</p>
+                        <p><strong>注册时间：</strong>2026-03-18 09:30</p>
+                    </div>
+                    <div class="registration-actions">
+                        <button class="approve-btn">通过</button>
+                        <button class="reject-btn">拒绝</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 乡村意见簿 | 共建美好农村</p>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>

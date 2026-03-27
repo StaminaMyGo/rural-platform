@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>意见管理 - 乡村意见簿</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>乡村意见簿</h1>
+            <nav>
+                <a href="index.html">首页</a>
+                <a href="publish.html" id="publish-btn">发布意见</a>
+                <a href="login.html" id="login-btn">登录</a>
+                <span id="user-info" style="display: none;"></span>
+                <a href="#" id="logout-btn" style="display: none;">退出</a>
+                 <span style="float:right">欢迎您:刘洋【村民】<a>注销</a></span>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="admin-panel">
+            <h2>意见管理</h2>
+            <div class="admin-nav">
+                <a href="admin.html">注册审核</a>
+                <a href="admin-opinions.html" class="active">意见管理</a>
+            </div>
+            
+            <div class="opinions-list">
+                <div class="opinion-item">
+                    <div class="opinion-header">
+                        <h3><a href="detail.html?id=1">关于改善村道照明的建议</a></h3>
+                        <span class="user">村民张三</span>
+                        <span class="date">2026-03-18</span>
+                    </div>
+                    <div class="opinion-content">
+                        村道照明不足，晚上出行不安全，建议增加路灯数量，改善照明条件。
+                    </div>
+                    <div class="opinion-footer">
+                        <span class="category">交通</span>
+                        <span class="status replied">已回复</span>
+                        <a href="reply.html?id=1" class="reply-btn">回复</a>
+                    </div>
+                </div>
+                
+                <div class="opinion-item">
+                    <div class="opinion-header">
+                        <h3><a href="detail.html?id=2">希望加强农村垃圾处理</a></h3>
+                        <span class="user">村民李四</span>
+                        <span class="date">2026-03-17</span>
+                    </div>
+                    <div class="opinion-content">
+                        村里垃圾堆积严重，建议增加垃圾收集点，定期清理，改善居住环境。
+                    </div>
+                    <div class="opinion-footer">
+                        <span class="category">环境</span>
+                        <span class="status pending">未回复</span>
+                        <a href="reply.html?id=2" class="reply-btn">回复</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 乡村意见簿 | 共建美好农村</p>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>

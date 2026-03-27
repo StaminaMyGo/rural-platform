@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 - 乡村意见簿</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>乡村意见簿</h1>
+            <nav>
+                <a href="index.html">首页</a>
+                <a href="#" id="publish-btn">发布意见</a>
+                <a href="login.html" id="login-btn">登录</a>
+                <span id="user-info" style="display: none;"></span>
+                <a href="#" id="logout-btn" style="display: none;">退出</a>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="login-form">
+            <h2>用户登录</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">用户名</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" id="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="user-type">用户类型</label>
+                    <select id="user-type" required>
+                        <option value="villager">村民</option>
+                        <option value="official">村干部</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" id="submit-login">登录</button>
+                </div>
+                <p class="error-message" id="login-error" style="display: none;"></p>
+                <p class="register-link">
+                    还没有账号？ <a href="register.html">立即注册</a>
+                </p>
+            </form>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 乡村意见簿 | 共建美好农村</p>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>

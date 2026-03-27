@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发布意见 - 乡村意见簿</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>乡村意见簿</h1>
+            <nav>
+                <a href="index.html">首页</a>
+                <a href="publish.html" id="publish-btn">发布意见</a>
+                <a href="login.html" id="login-btn">登录</a>
+                <span id="user-info" style="display: none;"></span>
+                <a href="#" id="logout-btn" style="display: none;">退出</a>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="publish-form">
+            <h2>发布意见</h2>
+            <form id="publish-form">
+                <div class="form-group">
+                    <label for="opinion-title">标题</label>
+                    <input type="text" id="opinion-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="opinion-category">类别</label>
+                    <select id="opinion-category" required>
+                        <option value="environment">环境</option>
+                        <option value="education">教育</option>
+                        <option value="health">医疗</option>
+                        <option value="transportation">交通</option>
+                        <option value="other">其他</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="opinion-content">内容</label>
+                    <textarea id="opinion-content" rows="10" required></textarea>
+                </div>
+                <div class="form-actions">
+                    <a href="index.html" class="cancel-btn">取消</a>
+                    <button type="submit" id="submit-publish">发布</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 乡村意见簿 | 共建美好农村</p>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>
