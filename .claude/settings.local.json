@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la *.md)",
+      "Bash(timeout 10 npm run dev)",
+      "Bash(timeout 8 npm run dev)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/api-docs)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/api-docs/)",
+      "Bash(curl -s http://localhost:3000/api-docs.json)",
+      "Bash(pkill -f nodemon)"
+    ]
+  }
+}

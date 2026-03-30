@@ -8,6 +8,56 @@ const router = express.Router()
 // 所有文章路由均需要登录
 router.use(authMiddleware)
 
+/**
+ * @swagger
+ * /api/articles:
+ *   get:
+ *     summary: 获取文章列表
+ *     description: 获取文章列表，支持分页和关键词搜索，需要登录认证
+ *     tags:
+ *       - 文章接口
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - $ref: '#/components/parameters/pageParam'
+ *       - $ref: '#/components/parameters/limitParam'
+ *       - $ref: '#/components/parameters/keywordParam'
+ *     responses:
+ *       200:
+ *         description: 获取文章列表成功
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/PaginatedResponse'
+ *               example:
+ *                 code: 200
+ *                 message: 成功
+ *                 data:
+ *                   list:
+ *                     - id: "69c23a6fd8589fba7cb98a23"
+ *                       title: "乡村发展规划"
+ *                       summary: "关于乡村未来发展的规划建议"
+ *                       category: "规划"
+ *                       author: "张三"
+ *                       authorId: "69c23a6fd8589fba7cb98a20"
+ *                       createdAt: "2024-01-15T08:30:00.000Z"
+ *                       updatedAt: "2024-01-15T08:30:00.000Z"
+ *                   total: 25
+ *                   page: 1
+ *                   limit: 10
+ *       401:
+ *         description: 未授权，需要登录
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *               example:
+ *                 code: 401
+ *                 message: 未授权，请先登录
+ *                 data: null
+ *       500:
+ *         description: 服务器内部错误
+ */
 // GET /api/articles — 获取文章列表（支持分页 + 关键词搜索）
 router.get('/', async (req, res) => {
   try {
@@ -35,6 +85,53 @@ router.get('/', async (req, res) => {
   }
 })
 
+/**
+ * @swagger
+ * /api/articles/{id}:
+ *   get:
+ *     summary: 获取单篇文章
+ *     description: 根据ID获取单篇文章详情，需要登录认证
+ *     tags:
+ *       - 文章接口
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         description: 文章ID
+ *         required: true
+ *         schema:
+ *           type: string
+ *           example: "69c23a6fd8589fba7cb98a23"
+ *     responses:
+ *       200:
+ *         description: 获取文章成功
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ApiResponse'
+ *               example:
+ *                 code: 200
+ *                 message: 成功
+ *                 data:
+ *                   id: "69c23a6fd8589fba7cb98a23"
+ *                   title: "乡村发展规划"
+ *                   content: "详细的发展规划内容..."
+ *                   summary: "关于乡村未来发展的规划建议"
+ *                   category: "规划"
+ *                   author: "张三"
+ *                   authorId: "69c23a6fd8589fba7cb98a20"
+ *                   createdAt: "2024-01-15T08:30:00.000Z"
+ *                   updatedAt: "2024-01-15T08:30:00.000Z"
+ *       401:
+ *         description: 未授权，需要登录
+ *       403:
+ *         description: 无权访问
+ *       404:
+ *         description: 文章不存在
+ *       500:
+ *         description: 服务器内部错误
+ */
 // GET /api/articles/:id — 获取单篇文章
 router.get('/:id', async (req, res) => {
   try {
@@ -46,6 +143,69 @@ router.get('/:id', async (req, res) => {
   }
 })
 
+/**
+ * @swagger
+ * /api/articles:
+ *   post:
+ *     summary: 创建文章
+ *     description: 创建新文章，需要登录认证
+ *     tags:
+ *       - 文章接口
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - title
+ *               - content
+ *             properties:
+ *               title:
+ *                 type: string
+ *                 description: 文章标题
+ *                 example: "乡村发展规划"
+ *               content:
+ *                 type: string
+ *                 description: 文章内容
+ *                 example: "详细的发展规划内容..."
+ *               summary:
+ *                 type: string
+ *                 description: 文章摘要
+ *                 example: "关于乡村未来发展的规划建议"
+ *               category:
+ *                 type: string
+ *                 description: 文章分类
+ *                 example: "规划"
+ *     responses:
+ *       201:
+ *         description: 文章创建成功
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ApiResponse'
+ *               example:
+ *                 code: 201
+ *                 message: 文章创建成功
+ *                 data:
+ *                   id: "69c23a6fd8589fba7cb98a23"
+ *                   title: "乡村发展规划"
+ *                   content: "详细的发展规划内容..."
+ *                   summary: "关于乡村未来发展的规划建议"
+ *                   category: "规划"
+ *                   author: "张三"
+ *                   authorId: "69c23a6fd8589fba7cb98a20"
+ *                   createdAt: "2024-01-15T08:30:00.000Z"
+ *                   updatedAt: "2024-01-15T08:30:00.000Z"
+ *       400:
+ *         description: 请求参数错误，标题和内容不能为空
+ *       401:
+ *         description: 未授权，需要登录
+ *       500:
+ *         description: 服务器内部错误
+ */
 // POST /api/articles — 新建文章
 router.post('/', async (req, res) => {
   try {
@@ -66,6 +226,78 @@ router.post('/', async (req, res) => {
   }
 })
 
+/**
+ * @swagger
+ * /api/articles/{id}:
+ *   put:
+ *     summary: 更新文章
+ *     description: 更新文章信息，只有作者或管理员可以编辑，需要登录认证
+ *     tags:
+ *       - 文章接口
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         description: 文章ID
+ *         required: true
+ *         schema:
+ *           type: string
+ *           example: "69c23a6fd8589fba7cb98a23"
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *                 description: 文章标题
+ *                 example: "乡村发展规划(更新版)"
+ *               content:
+ *                 type: string
+ *                 description: 文章内容
+ *                 example: "更新后的发展规划内容..."
+ *               summary:
+ *                 type: string
+ *                 description: 文章摘要
+ *                 example: "更新后的规划建议"
+ *               category:
+ *                 type: string
+ *                 description: 文章分类
+ *                 example: "规划"
+ *     responses:
+ *       200:
+ *         description: 文章更新成功
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ApiResponse'
+ *               example:
+ *                 code: 200
+ *                 message: 文章更新成功
+ *                 data:
+ *                   id: "69c23a6fd8589fba7cb98a23"
+ *                   title: "乡村发展规划(更新版)"
+ *                   content: "更新后的发展规划内容..."
+ *                   summary: "更新后的规划建议"
+ *                   category: "规划"
+ *                   author: "张三"
+ *                   authorId: "69c23a6fd8589fba7cb98a20"
+ *                   createdAt: "2024-01-15T08:30:00.000Z"
+ *                   updatedAt: "2024-01-16T10:45:00.000Z"
+ *       400:
+ *         description: 请求参数错误
+ *       401:
+ *         description: 未授权，需要登录
+ *       403:
+ *         description: 无权编辑此文章
+ *       404:
+ *         description: 文章不存在
+ *       500:
+ *         description: 服务器内部错误
+ */
 // PUT /api/articles/:id — 更新文章
 router.put('/:id', async (req, res) => {
   try {
@@ -90,6 +322,44 @@ router.put('/:id', async (req, res) => {
   }
 })
 
+/**
+ * @swagger
+ * /api/articles/{id}:
+ *   delete:
+ *     summary: 删除文章
+ *     description: 删除文章，只有作者或管理员可以删除，需要登录认证
+ *     tags:
+ *       - 文章接口
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         description: 文章ID
+ *         required: true
+ *         schema:
+ *           type: string
+ *           example: "69c23a6fd8589fba7cb98a23"
+ *     responses:
+ *       200:
+ *         description: 文章删除成功
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ApiResponse'
+ *               example:
+ *                 code: 200
+ *                 message: 文章删除成功
+ *                 data: null
+ *       401:
+ *         description: 未授权，需要登录
+ *       403:
+ *         description: 无权删除此文章
+ *       404:
+ *         description: 文章不存在
+ *       500:
+ *         description: 服务器内部错误
+ */
 // DELETE /api/articles/:id — 删除文章
 router.delete('/:id', async (req, res) => {
   try {
