@@ -191,7 +191,7 @@ onMounted(() => loadMySuggestions(1))
 }
 .profile-main { display: flex; flex-direction: column; gap: 20px; }
 .card { padding: 24px; }
-.profile-card, .suggestions-card {}
+/* .profile-card, .suggestions-card {} */
 .card-title { font-size: 16px; font-weight: 700; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
 .info-row { display: flex; gap: 16px; align-items: baseline; margin-bottom: 12px; font-size: 14px; }
 .info-label { font-weight: 500; width: 80px; color: var(--text-muted); flex-shrink: 0; }

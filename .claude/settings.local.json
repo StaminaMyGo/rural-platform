@@ -21,7 +21,10 @@
       "Bash(curl -v -X POST -H \"Content-Type: application/json\" -d \"{\\\\\"username\\\\\":\\\\\"test\\\\\",\\\\\"password\\\\\":\\\\\"test\\\\\"}\" http://127.0.0.1:4523/m1/8022290-7776894-default/auth/login)",
       "Bash(curl -v -X POST -H \"Content-Type: application/json\" -d \"{}\" http://127.0.0.1:4523/auth/login)",
       "Bash(ls -la frontend/.env*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(npm list:*)",
+      "Bash(find src:*)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/api/v1/admin/stats)"
     ]
   }
 }

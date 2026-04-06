@@ -16,6 +16,15 @@
 
     <main :class="authStore.isLoggedIn ? 'main-content' : ''">
       <router-view />
+      <!-- 在 router-view 后面添加 -->
+      <div v-if="$route.path === '/'" class="chart-section">
+        <BarChart 
+          :title="chartConfig.title"
+          :xAxisData="chartConfig.categories"
+          :seriesData="chartConfig.data"
+          height="400px"
+        />
+      </div>
     </main>
 
     <footer v-if="authStore.isLoggedIn" class="site-footer">
@@ -66,6 +75,7 @@ import { ref } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useRouter } from 'vue-router'
 import { createSuggestion } from '@/api/suggestions'
+import BarChart from '@/components/BarChart.vue'
 
 const authStore = useAuthStore()
 const router = useRouter()
@@ -74,6 +84,13 @@ const showPublishModal = ref(false)
 const publishing = ref(false)
 const publishError = ref('')
 const form = ref({ title: '', category: '其他', content: '' })
+
+// 图表配置
+const chartConfig = ref({
+  title: '建言分类统计',
+  categories: ['环境', '教育', '医疗', '交通', '其他'],
+  data: [42, 28, 35, 19, 15]  // 后续改为从API获取
+})
 
 function handleLogout() {
   authStore.logout()
@@ -237,5 +254,14 @@ async function submitSuggestion() {
   justify-content: flex-end;
   gap: 10px;
   margin-top: 8px;
+}
+
+/* 图表区域样式 */
+.chart-section {
+  margin-bottom: 40px;
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
 }
 </style>

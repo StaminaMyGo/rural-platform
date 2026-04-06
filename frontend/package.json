@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "axios": "^1.6.0",
+    "echarts": "^6.0.0",
     "pinia": "^2.1.7",
     "snarkdown": "^2.0.0",
     "vue": "^3.3.0",

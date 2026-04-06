@@ -58,23 +58,93 @@
         </router-link>
       </div>
     </div>
+
+    <!-- 图表区域 -->
+    <div v-if="!loading && stats" class="chart-section">
+      <h3 class="section-subtitle">数据可视化</h3>
+
+      <!-- 错误提示 -->
+      <div v-if="error" class="alert-error">
+        {{ error }}
+        <button @click="retryLoad" class="btn btn-sm ml-2">重试</button>
+      </div>
+
+      <!-- 图表显示 -->
+      <div v-else-if="chartConfig.categories.length > 0 && chartConfig.data.length > 0">
+        <BarChart
+          :title="chartConfig.title"
+          :xAxisData="chartConfig.categories"
+          :seriesData="chartConfig.data"
+          height="400px"
+        />
+        <div class="chart-footer">
+          <small class="text-muted">
+            统计时间: {{ new Date().toLocaleDateString('zh-CN') }} |
+            总计 {{ categoryStats?.total || 0 }} 条建言
+          </small>
+        </div>
+      </div>
+
+      <!-- 空状态 -->
+      <div v-else class="empty-state">
+        <p>暂无分类统计数据</p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { getStats } from '@/api/admin'
+import { getStats, getCategoryStats } from '@/api/admin'
+import BarChart from '@/components/BarChart.vue'
 
 const stats = ref(null)
+const categoryStats = ref(null)
 const loading = ref(true)
+const error = ref('')
 
-onMounted(async () => {
+// 图表配置 - 初始为空，从API获取真实数据
+const chartConfig = ref({
+  title: '建言分类统计',
+  categories: [],  // 初始为空
+  data: []        // 初始为空
+})
+
+// 加载数据函数，支持重试
+async function loadData() {
+  loading.value = true
+  error.value = ''
   try {
-    const res = await getStats()
-    stats.value = res.data
-  } catch { /* ignore */ } finally {
+    // 并行请求基础统计和分类统计
+    const [statsRes, categoriesRes] = await Promise.all([
+      getStats(),
+      getCategoryStats()
+    ])
+
+    stats.value = statsRes.data
+    categoryStats.value = categoriesRes.data
+
+    // 动态更新图表配置
+    chartConfig.value = {
+      title: '建言分类统计',
+      categories: categoriesRes.data.categories,
+      data: categoriesRes.data.counts
+    }
+  } catch (err) {
+    error.value = err.message || '数据加载失败，请稍后重试'
+    console.error('加载数据失败:', err)
+  } finally {
     loading.value = false
   }
+}
+
+// 重试函数
+async function retryLoad() {
+  await loadData()
+}
+
+onMounted(() => {
+  loadData()
 })
 </script>
 
@@ -136,4 +206,53 @@ onMounted(async () => {
   color: var(--primary);
 }
 .quick-icon { font-size: 28px; }
+
+/* 图表区域样式 */
+.chart-section {
+  margin-top: 32px;
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+/* 错误提示 */
+.alert-error {
+  background: #fee2e2;
+  color: #b91c1c;
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  font-size: 14px;
+  margin-bottom: 16px;
+  border-left: 4px solid #b91c1c;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.alert-error .btn {
+  margin-left: 8px;
+  font-size: 12px;
+  padding: 4px 8px;
+}
+
+/* 图表页脚 */
+.chart-footer {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.text-muted {
+  color: var(--text-muted);
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-muted);
+}
+.empty-state p {
+  font-size: 14px;
+}
 </style>

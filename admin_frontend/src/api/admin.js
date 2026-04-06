@@ -10,6 +10,11 @@ export function getStats() {
   return service.get('/v1/admin/stats')
 }
 
+// 分类统计数据
+export function getCategoryStats() {
+  return service.get('/v1/admin/stats/categories')
+}
+
 // 用户管理
 export function getUsers(params) {
   return service.get('/v1/admin/users', { params })

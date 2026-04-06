@@ -80,6 +80,75 @@ router.get('/stats', async (req, res) => {
 
 /**
  * @swagger
+ * /api/v1/admin/stats/categories:
+ *   get:
+ *     summary: 获取建言分类统计
+ *     description: 获取各分类的建言数量统计，需要管理员权限
+ *     tags:
+ *       - 管理员接口
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: 获取分类统计成功
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ApiResponse'
+ *               example:
+ *                 code: 200
+ *                 message: 成功
+ *                 data:
+ *                   categories: ["环境", "教育", "医疗", "交通", "其他"]
+ *                   counts: [42, 28, 35, 19, 15]
+ *                   total: 139
+ *       401:
+ *         description: 未授权，需要登录
+ *       403:
+ *         description: 无权限，需要管理员角色
+ *       500:
+ *         description: 服务器内部错误
+ */
+// GET /api/v1/admin/stats/categories — 分类统计
+router.get('/stats/categories', async (req, res) => {
+  try {
+    // 分类枚举值，与Suggestion模型保持一致
+    const categories = ['环境', '教育', '医疗', '交通', '其他']
+
+    // 使用聚合查询统计每个分类的数量
+    const stats = await Suggestion.aggregate([
+      {
+        $group: {
+          _id: '$category',
+          count: { $sum: 1 }
+        }
+      }
+    ])
+
+    // 将聚合结果转换为映射，便于查找
+    const statsMap = {}
+    stats.forEach(item => {
+      statsMap[item._id] = item.count
+    })
+
+    // 确保所有分类都有值，即使为0
+    const counts = categories.map(category => statsMap[category] || 0)
+
+    // 计算总数
+    const total = counts.reduce((sum, count) => sum + count, 0)
+
+    return success(res, {
+      categories,
+      counts,
+      total
+    })
+  } catch (err) {
+    return serverError(res, err.message)
+  }
+})
+
+/**
+ * @swagger
  * /api/v1/admin/users:
  *   get:
  *     summary: 获取用户列表
