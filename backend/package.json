@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "docs:generate": "swagger-jsdoc -d config/swagger.js routes/*.js -o ../api-docs.json"
   },
   "dependencies": {
     "axios": "^1.6.0",

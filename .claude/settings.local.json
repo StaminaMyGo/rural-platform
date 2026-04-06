@@ -24,7 +24,9 @@
       "Bash(npm run:*)",
       "Bash(npm list:*)",
       "Bash(find src:*)",
-      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/api/v1/admin/stats)"
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/api/v1/admin/stats)",
+      "Bash(./node_modules/.bin/swagger-jsdoc --help)",
+      "Bash(npx swagger-jsdoc:*)"
     ]
   }
 }
