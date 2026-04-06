@@ -1,15 +1,9 @@
 import axios from 'axios'
 import router from '@/router'
 
-// 根据环境变量获取baseURL
-const getBaseURL = () => {
-  const useMock = import.meta.env.VITE_USE_MOCK === 'true'
-  const mockBaseURL = import.meta.env.VITE_MOCK_BASE_URL
-
-  if (useMock && mockBaseURL) {
-    return mockBaseURL
-  }
-  return '/api' // 默认使用本地代理
+function getBaseURL() {
+  // 代理配置为 /api，所以所有请求都走 /api 前缀
+  return '/api'
 }
 
 // 创建 axios 实例

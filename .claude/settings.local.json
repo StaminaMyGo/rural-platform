@@ -12,7 +12,16 @@
       "Bash(node -c src/api/request.js)",
       "Bash(node -c vite.config.js)",
       "Bash(find \"e:\\\\E_projects\\\\rural_public_platform\" -path \"*/node_modules\" -prune -o -name \"*.js\" -type f -exec grep -l \"mock\\\\|Mock\" {})",
-      "Bash(find \"e:\\\\E_projects\\\\rural_public_platform\\\\backend\" -name \"*.js\" -type f -exec grep -l \"password\\\\|validate\" {})"
+      "Bash(find \"e:\\\\E_projects\\\\rural_public_platform\\\\backend\" -name \"*.js\" -type f -exec grep -l \"password\\\\|validate\" {})",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:4523/m1/8022290-7776894-default/auth/login --max-time 5)",
+      "Bash(pwsh -c \"Test-NetConnection -ComputerName 127.0.0.1 -Port 4523 -InformationLevel Quiet\")",
+      "Bash(cmd /c \"netstat -an | findstr 4523\")",
+      "Bash(timeout 3 telnet 127.0.0.1 4523)",
+      "Bash(curl -v http://127.0.0.1:4523/m1/8022290-7776894-default/auth/login)",
+      "Bash(curl -v -X POST -H \"Content-Type: application/json\" -d \"{\\\\\"username\\\\\":\\\\\"test\\\\\",\\\\\"password\\\\\":\\\\\"test\\\\\"}\" http://127.0.0.1:4523/m1/8022290-7776894-default/auth/login)",
+      "Bash(curl -v -X POST -H \"Content-Type: application/json\" -d \"{}\" http://127.0.0.1:4523/auth/login)",
+      "Bash(ls -la frontend/.env*)",
+      "Bash(npm run:*)"
     ]
   }
 }

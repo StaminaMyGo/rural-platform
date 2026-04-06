@@ -3,18 +3,17 @@ import vue from '@vitejs/plugin-vue'
 import { fileURLToPath, URL } from 'node:url'
 
 export default defineConfig(({ mode }) => {
-  // 加载环境变量
   const env = loadEnv(mode, process.cwd(), '')
 
-  // 根据环境变量决定是否启用代理
-  const proxyConfig = env.VITE_USE_MOCK === 'true'
-    ? {} // 使用Mock时禁用代理
-    : {
-        '/api': {
-          target: 'http://localhost:3000',
-          changeOrigin: true
-        }
-      }
+  const useMock = env.VITE_USE_MOCK === 'true'
+
+  console.log('当前模式:', mode)
+  console.log('是否使用Mock:', useMock)
+
+  // 统一目标地址
+  const target = useMock
+    ? env.VITE_MOCK_BASE_URL
+    : env.VITE_API_BASE_URL
 
   return {
     plugins: [vue()],
@@ -25,7 +24,13 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       port: 5173,
-      proxy: proxyConfig
+      proxy: {
+        '/api': {
+          target,
+          changeOrigin: true
+          // ❗不写 rewrite，保留 /api
+        }
+      }
     }
   }
 })

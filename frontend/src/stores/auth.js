@@ -4,7 +4,14 @@ import { login as loginApi, register as registerApi } from '@/api/auth'
 
 export const useAuthStore = defineStore('auth', () => {
   const token = ref(localStorage.getItem('token') || '')
-  const user = ref(JSON.parse(localStorage.getItem('user') || 'null'))
+  let userValue = null
+  try {
+    userValue = JSON.parse(localStorage.getItem('user') || 'null')
+  } catch (e) {
+    console.error('解析user数据失败:', e)
+    localStorage.removeItem('user')
+  }
+  const user = ref(userValue)
 
   const isLoggedIn = computed(() => !!token.value)
   const isAdmin = computed(() => user.value?.role === 'admin')
